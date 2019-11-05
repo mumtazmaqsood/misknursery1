@@ -154,3 +154,51 @@ class Navigation():
                                             # END OF LEFT MENU
 # ---------------------------------------------------------------------------------------------------------------
 
+
+
+# -------------------------------------------------------------------------------------------------------------------
+#                               SHOPPING CART
+# -------------------------------------------------------------------------------------------------------------------
+
+    def shopping_cart(self):
+
+        driver.find_element_by_xpath("//div[@id='shopify-section-header']//li[4]//a[1]//i[1]").click()
+        sleep(2)
+
+        # XPATH OF QUANTITY BOX
+        change_quantity = driver.find_elements(By.XPATH, "//div[@class='grid']//div[@class='grid__item medium-"
+                                                         "-up-three-fifths']//form[@class='cart']"
+                                                         "//table//tr//td[4]//div//input")
+        quantity = len(change_quantity)
+        for i in range(quantity):
+            change_quantity = driver.find_elements(By.XPATH, "//div[@class='grid']//div[@class='grid__item medium-"
+                                                             "-up-three-fifths']//form[@class='cart']"
+                                                                 "//table//tr//td[4]//div//input")
+
+            #putting different values in quantity box , other than digit
+            if i == 0:
+                change_quantity[i].clear()
+                change_quantity[i].send_keys("1.1")
+            elif i == 1:
+                change_quantity[i].clear()
+                change_quantity[i].send_keys(-1)
+            elif i == 2:
+                change_quantity[i].clear()
+                change_quantity[i].send_keys("@")
+            else:
+                change_quantity[i].clear()
+                change_quantity[i].send_keys(0)
+
+        # XPATH OF UPDATE
+        driver.find_element_by_xpath("//div[@id='shopify-section-cart-template']"
+                                     "//div[@class='page-width']//form[@action='/cart']"
+                                     "/input[@name='update']").click()
+        sleep(2)
+        # XPATH OF CONTINOU SHOPPING
+        driver.find_element_by_xpath("//a[@class='btn btn--secondary cart__update cart_"
+                                                        "_continue--large small--hide']").click()
+        sleep(2)
+
+# -------------------------------------------------------------------------------------------------------------------
+#        END OF SHOPPING CART
+# -------------------------------------------------------------------------------------------------------------------
