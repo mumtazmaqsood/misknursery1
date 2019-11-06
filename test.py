@@ -202,3 +202,78 @@ class Navigation():
 # -------------------------------------------------------------------------------------------------------------------
 #        END OF SHOPPING CART
 # -------------------------------------------------------------------------------------------------------------------
+
+
+# -------------------------------------------------------------------------------------------------------------------
+#        CHECKOUT MENU
+# -------------------------------------------------------------------------------------------------------------------
+
+    def checkOut(self):
+
+        driver.find_element_by_xpath("//div[@id='shopify-section-header']//li[4]//a[1]//i[1]").click()
+        sleep(2)
+        driver.find_element(By.XPATH, "//input[@name='checkout']").click()
+        sleep(2)
+
+        # form elements
+        cus_Name = driver.find_element(By.XPATH,"//input[@id='checkout_email_or_phone']")
+        cus_Name.send_keys("m@abc.com")
+        sleep(1)
+        chk_box = driver.find_element_by_xpath("//input[@id='checkout_buyer_accepts_marketing']")
+        if chk_box.is_selected():
+            chk_box.click()
+        else:
+            chk_box.click()
+        sleep(2)
+
+        # Customer details
+        customer_Detail = driver.find_elements(By.XPATH, "//div[@class='section__content']//input")
+        for i in range(len(customer_Detail)):
+            customer_Detail = driver.find_elements(By.XPATH, "//div[@class='section__content']//input")
+            # input boxes starts from 14 and ends on 22
+            i = i + 14
+            if i == 14:
+                customer_Detail[i].send_keys("M")
+            elif i == 15:
+                customer_Detail[i].send_keys("Ma")
+            elif i == 16:
+                customer_Detail[i].send_keys("Software Testing")
+            elif i == 17:
+                customer_Detail[i].send_keys("goje xladsaxe")
+            elif i == 18:
+                customer_Detail[i].send_keys("33")
+            elif i == 19:
+                customer_Detail[i].send_keys("Copenhagen")
+            elif i == 20:
+                country_option = Select(driver.find_element_by_xpath("//div[@class = 'field__input-wrapper"
+                                                                     " field__input-wrapper--select']//select"))
+
+                country_option.select_by_visible_text("Pakistan")
+            elif i == 21:
+                customer_Detail[i].send_keys("2800")
+            elif i == 22:
+                customer_Detail[i].send_keys("000000000")
+            elif i == 23 or i == 24:
+                i = i + 1
+            elif i == 25:
+                if not customer_Detail[i].is_selected():
+                    customer_Detail[i].click()
+                else:
+                    customer_Detail[i].click()
+            sleep(2)
+
+        continue_Shopping = driver.find_element_by_xpath("//button[@id='continue_button']")
+        continue_Shopping.click()
+        sleep(2)
+        return_cusInfo = driver.find_element_by_xpath("//div[@class='step__footer']//a")
+        return_cusInfo.click()
+        sleep(2)
+        driver.find_element_by_xpath("//button[@id='continue_button']").click()
+        sleep(2)
+        continue_Payment = driver.find_element_by_xpath("//button[@id='continue_button']")
+        continue_Payment.click()
+        sleep(2)
+
+# -------------------------------------------------------------------------------------------------------------------
+#        END OF CHECKOUT
+# -------------------------------------------------------------------------------------------------------------------
