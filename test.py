@@ -324,3 +324,20 @@ class Navigation():
 # -------------------------------------------------------------------------------------------------------------------
 #        END OF PAYMENT METHOD
 # -------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+navigation_obj = Navigation()
+navigation_obj.left_navigation()
+sleep(2)
+navigation_obj.left_nav1()
+sleep(2)
+navigation_obj.shopping_cart()
+sleep(1)
+navigation_obj.checkOut()
+sleep(1)
+
+driver.close()
+driver.quit()
