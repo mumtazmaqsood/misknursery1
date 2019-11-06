@@ -202,3 +202,50 @@ class Navigation():
 # -------------------------------------------------------------------------------------------------------------------
 #        END OF SHOPPING CART
 # -------------------------------------------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------------------------------------------
+#        PAYMENT METHOD
+# -------------------------------------------------------------------------------------------------------------------
+    def payment_Method(self):
+
+        payment = driver.find_elements(By.XPATH, "//div[@class='radio__input']//input")
+        for i in range(len(payment)):
+            payment = driver.find_elements(By.XPATH, "//div[@class='radio__input']//input")
+            if i == 0:
+                payment[i].click()
+                payment[3].click()
+                sleep(1)
+                driver.find_element_by_xpath(
+                    "//div[@class='shown-if-js']//button[@id='continue_button']").click()
+                sleep(2)
+                driver.back()
+                sleep(2)
+            elif i == 1:
+                payment[i].click()
+                payment[4].click()
+                sleep(1)
+                driver.find_element_by_xpath(
+                    "//div[@class='shown-if-js']//button[@id='continue_button']").click()
+                sleep(2)
+                driver.back()
+                sleep(2)
+            # BELOW CODE IS FINE , COMMENT BCZ , IT SENDS EMAIL TO COMPNAY
+            # else:
+            #     payment[i].click()
+            #     sleep(1)
+            #     payment[1].click()
+            #     payment[3].click()
+            #     sleep(1)
+            #     # driver.find_element_by_xpath(
+            #     #     "//div[@class='shown-if-js']//button[@id='continue_button']").click()
+            #     # sleep(2)
+            #     # driver.back()
+            #     # sleep(2)
+        # back to main page (TEST LOGO)
+        driver.find_element_by_xpath("//div[@class='main__header']"
+                                     "//img[@class='logo__image logo__image--medium']").click()
+        sleep(2)
+
+# -------------------------------------------------------------------------------------------------------------------
+#        END OF PAYMENT METHOD
+# -------------------------------------------------------------------------------------------------------------------
