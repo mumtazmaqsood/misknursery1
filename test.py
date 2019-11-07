@@ -203,6 +203,7 @@ class Navigation():
 #        END OF SHOPPING CART
 # -------------------------------------------------------------------------------------------------------------------
 
+
 # -------------------------------------------------------------------------------------------------------------------
 #        CHECKOUT MENU
 # -------------------------------------------------------------------------------------------------------------------
@@ -319,5 +320,133 @@ class Navigation():
         sleep(2)
 
 # -------------------------------------------------------------------------------------------------------------------
-#        END OF PAYMENT METHOD
+#        END OF PAYMENT METHOD<<<<<<< code_branch
 # -------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------
+
+
+# ---------------------------------------------------------------------------------------------------------------
+    # it has 5 menu on the top right corner, "SHOP, LOGIN, SIGNUP, CART, CURRENY DROPDOWN MENU"
+    # OUTERLOOP RUNS FOR MENUS START 0 - 4 (LOGIN AND SIGNUP BOTH ARE ON INDEX 2), ON ZERO-TH INDEX IS NAN
+    # INNER LOOP HANDLES INSIDE MAIN MENUS
+# ---------------------------------------------------------------------------------------------------------------
+    def header(self):
+
+        top_right_menu = driver.find_elements(By.XPATH, "//ul[@id='menu-top-menu']//li")
+        # OUTER LOOP
+        for index in range(len(top_right_menu)):
+            # index = index + 1
+            top_right_menu = driver.find_elements(By.XPATH, "//ul[@id='menu-top-menu']//li")
+            if index == 0:
+                print("0")
+            # shop menu
+            elif index == 1:
+                top_right_menu[index].click()
+                sleep(1)
+            #     login and signup
+            elif index == 2:
+                # Login and signup links is on index 2
+                login_signUp = driver.find_elements(By.XPATH, "//ul[@id='menu-top-menu']//li//div//a")
+                for i in range(len(login_signUp)):
+                    login_signUp = driver.find_elements(By.XPATH, "//ul[@id='menu-top-menu']//li//div//a")
+                    if i == 0:
+                        login_signUp[i].click()
+                        sleep(2)
+                        login_popUp = driver.find_elements(By.XPATH, "//form[@id='he_customer_login']//input")
+                        for i in range(len(login_popUp)):
+                            login_popUp = driver.find_elements(By.XPATH, "//form[@id='he_customer_login']//input")
+                            if i == 0:
+                                print("")
+                            elif i == 1:
+                                login_popUp[i].send_keys("mumtaz.maqsood")
+                                sleep(1)
+                            elif i == 2:
+                                login_popUp[i].send_keys("vici2FHh")
+                                sleep(1)
+                            else:
+                                login_popUp[i].click()
+                                sleep(2)
+
+                        driver.find_element_by_xpath("//div[@id='login_modal']"
+                                                     "//button[@class='ssw-close'][contains(text(),'×')]").click()
+                        sleep(2)
+
+                    if i == 1:
+                        login_signUp[i].click()
+                        sleep(2)
+                        socialMedia_btn = driver.find_elements(By.XPATH, "//div[@class='ssw-modal-body']"
+                                                                         "//div[@class='ssw-socialconnect']//div//a")
+
+                        for i in range(len(socialMedia_btn)):
+                            socialMedia_btn = driver.find_elements(By.XPATH, "//div[@class='ssw-modal-body']"
+                                                                             "//div[@class='ssw-socialconnect']"
+                                                                             "//div//a")
+                            sleep(2)
+                            if i == 3:
+                                socialMedia_btn[i].click()
+                                sleep(2)
+
+                            if i == 4:
+                                socialMedia_btn[i].click()
+                                sleep(2)
+
+                            if i == 5:
+                                socialMedia_btn[i].click()
+                                sleep(2)
+                                handles = driver.window_handles
+                                for handle in handles:
+                                    driver.switch_to.window(handle)
+                                    sleep(2)
+                                    print(driver.title)
+                                    # sleep(2)
+                                    if driver.title == "Amazon Sign In":
+                                       # driver.maximize_window()
+                                        print("On second window")
+                                        sleep(2)
+                                        # driver.close()
+                                    break
+                            sleep(2)
+                        driver.find_element_by_xpath("//div[@id='signup_modal']"
+                                                     "//button[@class='ssw-close'][contains(text(),'×')]").click()
+                        sleep(2)
+            # currency dropdown menu
+            elif index == 4:
+                top_right_menu[index].click()
+                sleep(2)
+                currency_menu = Select(driver.find_element_by_xpath("//li[@class='top-menu-item']"
+                                                                       "//select[@name='currencies']"))
+                currency_options = currency_menu.options
+                # for option in currency_options:
+                currency_menu.select_by_visible_text('AED')
+                sleep(2)
+
+            else:
+                # click on cart
+                top_right_menu[index].click()
+                # driver.back()
+            # sleep(1)
+
+# -----------------------------------------------------------------------------------------------------------------
+#             END TEST CASE 'HEADER'
+# -----------------------------------------------------------------------------------------------------------------
+
+
+
+
+navigation_obj = Navigation()
+navigation_obj.left_navigation()
+sleep(2)
+navigation_obj.left_nav1()
+sleep(2)
+navigation_obj.shopping_cart()
+sleep(1)
+navigation_obj.checkOut()
+sleep(1)
+navigation_obj.payment_Method()
+sleep(2)
+navigation_obj.header()
+sleep(2)
+
+
+driver.close()
+driver.quit()
