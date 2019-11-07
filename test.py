@@ -443,6 +443,11 @@ navigation_obj.shopping_cart()
 sleep(1)
 navigation_obj.checkOut()
 sleep(1)
+navigation_obj.payment_Method()
+sleep(2)
+navigation_obj.header()
+sleep(2)
+
 
 driver.close()
 driver.quit()
